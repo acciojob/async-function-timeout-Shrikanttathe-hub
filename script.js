@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const textInput = document.getElementById("text");
 		const delayInput = (document.getElementById("delay");
 
-		if(textInput === "" || isNaN(delayNumber)){
+		if(textInput === "" || isNaN(delayInput)){
 			alert("Please enter a valid code");
 			return;
 		}
