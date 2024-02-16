@@ -1,25 +1,19 @@
-//your JS code here. If required
-document.addEventListener("DOMContentLoaded", () => {
-	const btn = document.getElementById("btn");
+// script.js
+async function delayAndDisplay(text, delay) {
+  await new Promise(resolve => setTimeout(resolve, delay));
+  document.getElementById('output').innerText = text;
+}
 
-	btn.addEventListener("click", async () => {
-		const textInput = document.getElementById("text");
-		const delayInput = (document.getElementById("delay");
+function handleSubmit() {
+  const textInput = document.getElementById('text');
+  const delayInput = document.getElementById('delay');
 
-		if(textInput === "" || isNaN(delayInput)){
-			alert("Please enter a valid code");
-			return;
-		}
+  const text = textInput.value;
+  const delay = parseInt(delayInput.value);
 
-		try{
-			await delay(delayInput);
-			const outputDiv = document.getElementById("output");
-			outputDiv.textContent = textInput;
-			
-		}
-		catch(error){
-			console.error(error);
-		}
-		
-	});
-});
+  if (text && !isNaN(delay)) {
+    delayAndDisplay(text, delay);
+  } else {
+    alert('Please enter valid values for text and delay.');
+  }
+}
