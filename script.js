@@ -1,19 +1,25 @@
-// script.js
-async function delayAndDisplay(text, delay) {
-  await new Promise(resolve => setTimeout(resolve, delay));
-  document.getElementById('output').innerText = text;
-}
+/*  your css code here. If applicable */
+async function submitForm() {
+    /* // Retrieve user input values */
+    const textInput = document.getElementById("text").value;
+    const delayInput = parseInt(document.getElementById("delay").value);
 
-function handleSubmit() {
-  const textInput = document.getElementById('text');
-  const delayInput = document.getElementById('delay');
+    /* // Validate input */
+    if (!textInput || isNaN(delayInput) || delayInput < 0) {
+        alert("Please enter valid values.");
+        return;
+    }
 
-  const text = textInput.value;
-  const delay = parseInt(delayInput.value);
+    // Clear output
+    document.getElementById("output").innerText = "";
 
-  if (text && !isNaN(delay)) {
-    delayAndDisplay(text, delay);
-  } else {
-    alert('Please enter valid values for text and delay.');
-  }
+    try {
+        // Introduce delay using async/await
+        await new Promise(resolve => setTimeout(resolve, delayInput));
+
+        // Display user-provided text after the delay
+        document.getElementById("output").innerText = textInput;
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
